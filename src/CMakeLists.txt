@@ -1,6 +1,7 @@
 set(header_path "${${PROJECT_NAME}_SOURCE_DIR}/include/${PROJECT_NAME}")
 set(header 
     ${header_path}/${PROJECT_NAME}.h
+    ${header_path}/json.hpp
 )
 
 set(src 
