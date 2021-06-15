@@ -23,8 +23,10 @@ void restConn_init(const std::string& _credentials,
 
     struct curl_slist *headers = NULL;
     headers = curl_slist_append(headers, "Content-Type: application/json");
-    std::string auth = "Authorization: Bearer " + _token;
-    headers = curl_slist_append(headers, auth.c_str());
+    if ( _token != "" ) {
+      std::string auth = "Authorization: Bearer " + _token;
+      headers = curl_slist_append(headers, auth.c_str());
+    }
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
