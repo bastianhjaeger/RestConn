@@ -88,7 +88,7 @@ std::string restConn(const std::string& _url,
       curl_easy_setopt(curl, CURLOPT_POST, 1L);
 #ifndef NDEBUG
       if ( _verbose > 0 ) {
-        std::cout << "curl command POST: " << std::endl;
+        std::cout << "curl command POST" << std::endl;
       }
 #endif // NDEBUG
     }
@@ -96,7 +96,7 @@ std::string restConn(const std::string& _url,
       curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
 #ifndef NDEBUG
       if ( _verbose > 0 ) {
-        std::cout << "curl command PUT: " << std::endl;
+        std::cout << "curl command PUT" << std::endl;
       }
 #endif // NDEBUG
     }
@@ -104,7 +104,7 @@ std::string restConn(const std::string& _url,
       curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "GET");
 #ifndef NDEBUG
       if ( _verbose > 0 ) {
-        std::cout << "curl command GET: " << std::endl;
+        std::cout << "curl command GET" << std::endl;
       }
 #endif // NDEBUG
     }
@@ -112,7 +112,7 @@ std::string restConn(const std::string& _url,
       curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "SEARCH");
 #ifndef NDEBUG
       if ( _verbose > 0 ) {
-        std::cout << "curl command GET: " << std::endl;
+        std::cout << "curl command GET" << std::endl;
       }
 #endif // NDEBUG
     }
@@ -120,7 +120,7 @@ std::string restConn(const std::string& _url,
       curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 #ifndef NDEBUG
       if ( _verbose > 0 ) {
-        std::cout << "curl command DELETE: " << std::endl;
+        std::cout << "curl command DELETE" << std::endl;
       }
 #endif // NDEBUG
     }
