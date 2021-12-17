@@ -33,13 +33,13 @@ void restConn_init(const std::string& _credentials,
     curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
     curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
 
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false); // TODO make this optional by parameter.
 
     if ( _caCertFilepath != "" ) {
       std::ifstream ifs(_caCertFilepath);
       std::string content( (std::istreambuf_iterator<char>(ifs) ),
                            (std::istreambuf_iterator<char>()    ) );
 
-      curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false);
       curl_easy_setopt(curl, CURLOPT_CAINFO, content.c_str());
     }
 
