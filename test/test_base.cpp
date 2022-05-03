@@ -1,5 +1,7 @@
 #include <RestConn/RestConn.h>
 
+#include <algorithm>
+#include <execution>
 #include <thread>
 #include <gtest/gtest.h>
 
@@ -15,9 +17,24 @@ TEST(RestConnTest, simple) {
   json jResponse;
   json jRequest;
 
-  jResponse = rc::restConn(TEST_URI, "", "", "", "", jRequest,
+  CURL* curl = curl_easy_init();
+  jResponse = rc::restConn(curl, TEST_URI, "", "", "", "", jRequest,
         rc::GET, true, 0);
 
+  std::cout << jResponse.dump(3) << std::endl;
+}
+
+TEST(RestConnTest, simple2) {
+  json jResponse;
+  json jRequest;
+
+  rc::RestConn rco;
+  jResponse = rco.call(TEST_URI, "", "", "", "", jRequest,
+        rc::GET, false, 0);
+  std::cout << jResponse.dump(3) << std::endl;
+
+  jResponse = rco.call(TEST_URI, "", "", "", "", jRequest,
+        rc::GET, true, 0);
   std::cout << jResponse.dump(3) << std::endl;
 }
 
@@ -25,7 +42,8 @@ TEST(RestConnTest, withCredantials) {
   json jResponse;
   json jRequest;
 
-  EXPECT_NO_THROW( jResponse = rc::restConn(TEST_URI, TEST_CRED, TEST_CERT, TEST_PASS, "", jRequest,
+  CURL* curl = curl_easy_init();
+  EXPECT_NO_THROW( jResponse = rc::restConn(curl, TEST_URI, TEST_CRED, TEST_CERT, TEST_PASS, "", jRequest,
       rc::GET, true, false) );
 
   std::cout << jResponse.dump(3) << std::endl;
@@ -35,7 +53,8 @@ TEST(RestConnTest, withToken) {
   json jResponse;
   json jRequest;
 
-  EXPECT_NO_THROW( jResponse = rc::restConn(TEST_URI, "", "", "", TEST_TOKEN, jRequest,
+  CURL* curl = curl_easy_init();
+  EXPECT_NO_THROW( jResponse = rc::restConn(curl, TEST_URI, "", "", "", TEST_TOKEN, jRequest,
       rc::GET, true, false) );
 
   std::cout << jResponse.dump(3) << std::endl;

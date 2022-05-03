@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g3 -Wall -c -fmessage-length=0")
 
 
-
 execute_process (
   COMMAND 
     /bin/bash -c "printf $(git describe --tags)$(git diff --quiet || echo '-dirty')"
